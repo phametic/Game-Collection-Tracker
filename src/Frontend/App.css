@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+  
+}
+
+body {
+    background-color: #f9f4ef;
+}
+
+.Grow {
+    max-height: 315px;
+    overflow: hidden;
+    transition: max-height 1s ease-out;
+}
+
+.Grow:hover {
+    max-height: 500px;
+    transition: max-height 0.25s ease-in
+}
