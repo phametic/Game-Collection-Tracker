@@ -12,8 +12,14 @@ const baseUrl = 'http://localhost:9000/api/'
         return response.data;
     }
 
+    const getScreenshot = async(id) => {
+        const response = await axios.get(`${baseUrl}getScreenshot/${id}`);
+        return response.data;
+    }
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     callNewestGame,
-    getGame
+    getGame,
+    getScreenshot
 }

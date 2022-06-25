@@ -5,12 +5,15 @@ import Heading from './Heading.js';
 import Info from './Info.js';
 import Overview from './Overview.js';
 import Store from './Store.js';
+import Screenshot from './Screenshot.js';
 
 export default function GamePage(){
     const { gameId } = useParams();
 
     const [game, setGame] = useState({})
+    const [screenshot, setScreenshot] = useState({});
     const [loading, setLoading] = useState(true);
+    const [loadingSS, setLoadingSS] = useState(true);
 
     const getGame = async() => {
         try {
@@ -27,15 +30,33 @@ export default function GamePage(){
         }
     }
 
+    const getScreenshot = async() => {
+        try {
+            setLoadingSS(true);
+            const response = await Api.getScreenshot(gameId);
+            if(response) {
+                setScreenshot(response.results);
+                console.log("Screenshot data set.");
+                setLoadingSS(false);
+            }
+        } catch (error) {
+            console.log(error);
+            setLoadingSS(true);
+        }
+    }
+
     useEffect(() => {
         getGame();
+        getScreenshot();
     }, []);
 
-    const stores = game.stores.map((item) => (
+    const stores = game?.stores?.map((item) => (
         <Store name={item.store.name} key={item.store.id} website={item.store.domain}/>
-    ))
+    ));
 
-    console.log(game.stores[0].store.name)
+    const screenshots = screenshot.map((item) => (
+        <Screenshot image_url={item.image} gameName={game.name} key={item.id}/>
+    ))
 
     return(
         <section className="">
@@ -54,12 +75,12 @@ export default function GamePage(){
                 </section>
                 
                 <section
-                    className="mt-6 p-3 rounded-lg"
-                    style={{backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.9), rgba(52, 58, 64, 0.9)), url("https://media.rawg.io/media/screenshots/25c/25c5df2ef01c233f310c38a8b2e742ed.jpg")'}}
+                    className="mx-2 mt-6 p-3 rounded-lg"
+                    style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(52, 58, 64, 0.9)), url("${game.background_image_additional}")`}}
                 >
                     <img src={game.background_image} alt={game.name}/>
                     <article className="pt-4">
-                        <h3 className="text-[#fffffe] font-bold">Game Info</h3>
+                        <h3 className="text-xl text-[#fffffe] font-bold mb-2">Game Info</h3>
                         <Info 
                             developer={game.developers}
                             playTime={game.playtime}
@@ -70,7 +91,7 @@ export default function GamePage(){
                         />
                     </article>
                     <article className="py-4">
-                        <h3 className="text-[#fffffe] font-bold">Overview:</h3>
+                        <h3 className="text-xl text-[#fffffe] font-bold mb-2">Overview</h3>
                         <Overview 
                             description={game.description_raw}
                         />
@@ -81,9 +102,10 @@ export default function GamePage(){
                     {stores}
                 </section>
                 <section className="mt-3 p-3">
-                    <h3 className="text-[#020826] font-bold text-xl">Screenshots:</h3>
+                    <h3 className="text-[#020826] font-bold text-xl mb-3">Screenshots:</h3>
+                    {screenshots}
                 </section>
-                <section className="mt-6 p-3">
+                <section className="mt-3 p-3">
                     <h3 className="text-[#020826] font-bold text-xl">Similar Titles:</h3>
                 </section>
                 </div>
