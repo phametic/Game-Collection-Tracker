@@ -8,7 +8,8 @@ var cors = require("cors");
 var getGame = require('./routes/GetGame.js')
 var getNewestGames = require('./routes/getNewestGames.js');
 var getScreenshots = require('./routes/GetScreenshot.js');
-var getStores = require('./routes/getStores.js');
+var getStores = require('./routes/GetStores.js');
+var getSameSeries = require('./routes/GetSameSeries.js');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/getGame/:id', getGame);
 app.use('/api/getNewestGames', getNewestGames);
 app.use('/api/getScreenshot/:id', getScreenshots);
 app.use('/api/getStores/:id', getStores);
+app.use('/api/getSameSeries/:id', getSameSeries);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

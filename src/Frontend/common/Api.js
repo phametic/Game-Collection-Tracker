@@ -17,9 +17,21 @@ const baseUrl = 'http://localhost:9000/api/'
         return response.data;
     }
 
+    const getStore = async(id) => {
+        const response = await axios.get(`${baseUrl}getStores/${id}`)
+        return response.data;
+    }
+
+    const getSameSeries = async(id) => {
+        const response = await axios.get(`${baseUrl}getSameSeries/${id}`)
+        return response.data;
+    }
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     callNewestGame,
     getGame,
-    getScreenshot
+    getScreenshot,
+    getStore,
+    getSameSeries
 }

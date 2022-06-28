@@ -6,14 +6,16 @@ import Info from './Info.js';
 import Overview from './Overview.js';
 import Store from './Store.js';
 import Screenshot from './Screenshot.js';
+import SameGameCard from './SameGameCard.js';
 
 export default function GamePage(){
     const { gameId } = useParams();
 
     const [game, setGame] = useState({})
-    const [screenshot, setScreenshot] = useState({});
+    const [screenshot, setScreenshot] = useState();
+    const [store, setStore] = useState();
+    const [similarGameData, setSimilarGameData] = useState();
     const [loading, setLoading] = useState(true);
-    const [loadingSS, setLoadingSS] = useState(true);
 
     const getGame = async() => {
         try {
@@ -32,36 +34,69 @@ export default function GamePage(){
 
     const getScreenshot = async() => {
         try {
-            setLoadingSS(true);
             const response = await Api.getScreenshot(gameId);
             if(response) {
                 setScreenshot(response.results);
                 console.log("Screenshot data set.");
-                setLoadingSS(false);
+                console.log(screenshot);
             }
         } catch (error) {
             console.log(error);
-            setLoadingSS(true);
+        }
+    }
+
+    const getStores = async () => {
+        try {
+            const response = await Api.getStore(gameId);
+            if(response) {
+                setStore(response.results);
+                console.log("Store data set.");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getSameSeries = async () => {
+        try {
+            const response = await Api.getSameSeries(gameId);
+            if(response) {
+                setSimilarGameData(response.results);
+                console.log('Similar game data set.');
+            }
+        } catch(error) {
+            console.log(error);
         }
     }
 
     useEffect(() => {
         getGame();
         getScreenshot();
+        getStores();
+        getSameSeries();
     }, []);
 
-    const stores = game?.stores?.map((item) => (
-        <Store name={item.store.name} key={item.store.id} website={item.store.domain}/>
+    const stores = store?.map((item) => (
+        <Store key={item.store_id} id={item.store_id} website={item.url}/>
     ));
 
-    const screenshots = screenshot.map((item) => (
+    const screenshots = screenshot?.map((item) => (
         <Screenshot image_url={item.image} gameName={game.name} key={item.id}/>
-    ))
+    ));
+
+    const similarGames = similarGameData?.map((game) => (
+        <SameGameCard 
+            key={game.id} 
+            gameName={game.name}
+            bgImage={game.background_image}
+            platform={game.platforms}
+        />
+    ));
 
     return(
         <section className="">
             {loading ? 
-            <p className="text-[#020826] text-2xl">Data is loading...</p> 
+                <p className="text-[#020826] text-2xl">Data is loading...</p> 
             : 
             <div>
                 <section className="w-11/12 mx-auto">
@@ -103,10 +138,14 @@ export default function GamePage(){
                 </section>
                 <section className="mt-3 p-3">
                     <h3 className="text-[#020826] font-bold text-xl mb-3">Screenshots:</h3>
-                    {screenshots}
+                     {screenshots}
                 </section>
                 <section className="mt-3 p-3">
-                    <h3 className="text-[#020826] font-bold text-xl">Similar Titles:</h3>
+                    <h3 className="text-[#020826] font-bold text-xl mb-4">Other Games In The Series:</h3>
+                    <div className="flex flex-col md:items-center lg:flex-row lg:flex-wrap lg:gap-3 lg:justify-center">
+                        {similarGames}
+                    </div>
+                    
                 </section>
                 </div>
             }
