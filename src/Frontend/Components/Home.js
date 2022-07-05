@@ -9,7 +9,6 @@ export default function Home() {
     // const isLoading = React.useContext(isLoadingContext)
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-    console.log(data);
 
     const getNewestGames = async () => {
         try {
@@ -29,7 +28,7 @@ export default function Home() {
         getNewestGames();
     }, [])
  
-    const dataCards = data.map((element) => (
+    const gameCards = data.map((element) => (
         <GameCard 
             key={element.id} id={element.id} gameName={element.name}
             backgroundImage={element.background_image}
@@ -47,7 +46,7 @@ export default function Home() {
             {loading ? 
                 <p className="text-[#020826] text-2xl">Data is loading...</p> 
               : 
-                dataCards
+                gameCards
             }
             </div>
               

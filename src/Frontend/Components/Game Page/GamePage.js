@@ -7,6 +7,7 @@ import Overview from './Overview.js';
 import Store from './Store.js';
 import Screenshot from './Screenshot.js';
 import SameGameCard from './SameGameCard.js';
+import { Link } from 'react-router-dom';
 
 export default function GamePage(){
     const { gameId } = useParams();
@@ -69,12 +70,16 @@ export default function GamePage(){
         }
     }
 
-    useEffect(() => {
+    function getGameInfo() {
         getGame();
         getScreenshot();
         getStores();
         getSameSeries();
-    }, []);
+    }
+
+    useEffect(() => {
+        getGameInfo();
+    }, [gameId]);
 
     const stores = store?.map((item) => (
         <Store key={item.store_id} id={item.store_id} website={item.url}/>
@@ -85,12 +90,16 @@ export default function GamePage(){
     ));
 
     const similarGames = similarGameData?.map((game) => (
-        <SameGameCard 
-            key={game.id} 
-            gameName={game.name}
-            bgImage={game.background_image}
-            platform={game.platforms}
-        />
+        <Link to={`/game/${game.id}`}>
+            <SameGameCard 
+                key={game.id} 
+                id={game.id}
+                gameName={game.name}
+                bgImage={game.background_image}
+                platform={game.platforms}
+            />
+        </Link>
+        
     ));
 
     return(

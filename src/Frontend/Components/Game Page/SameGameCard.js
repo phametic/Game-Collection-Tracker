@@ -7,18 +7,18 @@ export default function SameGameCard({gameName, bgImage, platform}) {
         <Platform key={index} platformName={item.platform.name} fontSize={"sm"}/>
     ))
     return(
-        <div 
-            className="w-96 h-48 bg-cover mb-4"
-            style={
-                {
-                    backgroundImage: `url("${bgImage}")`,
+            <div 
+                className="w-72 h-48 bg-cover bg-center mb-4"
+                style={
+                    {
+                        backgroundImage: `url("${bgImage}")`,
+                    }
                 }
-            }
-        >
-            <h2 className="text-white font-bold text-lg text-center mt-4">{gameName}</h2>
-            <section className="flex flex-wrap justify-center">
-                {platforms}
-            </section>
-        </div>
+            >
+                <h2 className="text-white font-bold text-lg text-center mt-4">{gameName}</h2>
+                <section className="flex flex-wrap justify-center">
+                    {platforms}
+                </section>
+            </div>  
     )
 }
