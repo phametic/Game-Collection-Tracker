@@ -24,7 +24,7 @@ export default function GamePage(){
             const response = await Api.getGame(gameId);
             if(response) {
                 setGame(response);
-                console.log("Data set.");
+                console.log("Game data set.");
                 setLoading(false);
             }
         } catch (error) {
@@ -119,21 +119,28 @@ export default function GamePage(){
                 </section>
                 
                 <section
-                    className="mx-2 mt-6 p-3 rounded-lg"
+                    className="mx-2 mt-6 p-3 rounded-lg md:mx-4 md:flex md:flex-row md:gap-8"
                     style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(52, 58, 64, 0.9)), url("${game.background_image_additional}")`}}
                 >
-                    <img src={game.background_image} alt={game.name}/>
-                    <article className="pt-4">
-                        <h3 className="text-xl text-[#fffffe] font-bold mb-2">Game Info</h3>
-                        <Info 
-                            developer={game.developers}
-                            playTime={game.playtime}
-                            genre={game.genres}
-                            release={game.released}
-                            metacritic={game.metacritic}
-                            website={game.website}
+                    
+                    <section>
+                        <img 
+                            src={game.background_image} alt={game.name}
+                            className=""
                         />
-                    </article>
+                        <article className="pt-4">
+                        <h3 className="text-xl text-[#fffffe] font-bold mb-2">Game Info</h3>
+                            <Info 
+                                developer={game.developers}
+                                playTime={game.playtime}
+                                genre={game.genres}
+                                release={game.released}
+                                metacritic={game.metacritic}
+                                website={game.website}
+                            />
+                        </article>
+                    </section>
+                    
                     <article className="py-4">
                         <h3 className="text-xl text-[#fffffe] font-bold mb-2">Overview</h3>
                         <Overview 
@@ -146,8 +153,14 @@ export default function GamePage(){
                     {stores}
                 </section>
                 <section className="mt-3 p-3">
-                    <h3 className="text-[#020826] font-bold text-xl mb-3">Screenshots:</h3>
-                     {screenshots}
+                    <h3 
+                        className="text-[#020826] font-bold text-xl mb-3"
+                    >
+                        Screenshots:
+                    </h3>
+                    <section className="md:flex md:flex-row md:flex-wrap md:gap-4">
+                        {screenshots}
+                    </section>
                 </section>
                 <section className="mt-3 p-3">
                     <h3 className="text-[#020826] font-bold text-xl mb-4">Other Games In The Series:</h3>

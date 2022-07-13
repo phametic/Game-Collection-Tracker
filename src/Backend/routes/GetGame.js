@@ -8,7 +8,10 @@ const baseUrl = "https://api.rawg.io/api/games";
 let getGame = async (id) => {
     let response;
     try {
-        response = await axios(`${baseUrl}/${id}?key=${process.env.RAWG_API_KEY}`);
+        response = await axios({
+            method: "get",
+            url: `${baseUrl}/${id}?key=${process.env.RAWG_API_KEY}`,
+        });
         console.log("Getting game id: " + id);
     } catch (error) {
         console.log(error);

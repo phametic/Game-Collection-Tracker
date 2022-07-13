@@ -10,6 +10,7 @@ var getNewestGames = require('./routes/getNewestGames.js');
 var getScreenshots = require('./routes/GetScreenshot.js');
 var getStores = require('./routes/GetStores.js');
 var getSameSeries = require('./routes/GetSameSeries.js');
+var getSearchedGames = require('./routes/GetSearchedGames.js');
 
 var app = express();
 
@@ -27,11 +28,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/getGame/:id', getGame);
-app.use('/api/getNewestGames', getNewestGames);
-app.use('/api/getScreenshot/:id', getScreenshots);
-app.use('/api/getStores/:id', getStores);
-app.use('/api/getSameSeries/:id', getSameSeries);
+app.get('/api/get-game/:id', getGame);
+app.get('/api/get-newest-games', getNewestGames);
+app.get('/api/get-screenshot/:id', getScreenshots);
+app.get('/api/get-stores/:id', getStores);
+app.get('/api/get-same-series/:id', getSameSeries);
+app.get('/api/get-searched-games', getSearchedGames);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

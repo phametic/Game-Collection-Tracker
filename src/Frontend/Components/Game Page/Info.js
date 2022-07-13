@@ -15,7 +15,7 @@ export default function Info({developer, playTime, genre, release, metacritic, w
             <p className={infoStyle}><span className={headingStyle}>Genre:</span> {genres}</p>
             <p className={infoStyle}><span className={headingStyle}>Release:</span> {release}</p>
             <p className={infoStyle}><span className={headingStyle}>Metacritic:</span> {metacritic}</p>
-            <p className={`truncate ${infoStyle}`}><span className={headingStyle}>Website:</span> {website}</p>
+            <p className={`truncate ${infoStyle} md:whitespace-normal`}><span className={headingStyle}>Website:</span> {website}</p>
         </div>
     )
 }
