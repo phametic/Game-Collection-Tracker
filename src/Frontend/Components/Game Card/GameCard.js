@@ -37,7 +37,7 @@ export default function GameCard({id, gameName, backgroundImage, platform, metac
                     </p>
                 </div>
                 <Link to={`/game/${id}`}>
-                    <p className="text-[#020826] font-bold text-md md:text-[1vw]">{gameName}</p>
+                    <p className="text-[#020826] font-bold text-md md:text-[2vw] lg:text-xl">{gameName}</p>
                 </Link>
                 <AddGameBtn />
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Info({developer, playTime, genre, release, metacritic, website}) {
     
-    const genres = genre.map((item, index) => (
+    const genres = genre?.map((item, index) => (
         <span key={item.id}> {item.name} </span>
     ));
 
@@ -11,7 +11,6 @@ export default function Info({developer, playTime, genre, release, metacritic, w
     return(
         <div>
             <p className={infoStyle}><span className={headingStyle}>Company:</span> {developer[0].name}</p>
-            <p className={infoStyle}><span className={headingStyle}>Playtime:</span> {playTime}</p>
             <p className={infoStyle}><span className={headingStyle}>Genre:</span> {genres}</p>
             <p className={infoStyle}><span className={headingStyle}>Release:</span> {release}</p>
             <p className={infoStyle}><span className={headingStyle}>Metacritic:</span> {metacritic}</p>

@@ -3,6 +3,7 @@ import {AiFillWindows} from 'react-icons/ai';
 import {SiPlaystation, SiXbox, SiNintendo, SiApple, SiLinux} from 'react-icons/si';
 import {IoLogoGooglePlaystore} from 'react-icons/io5';
 import {GrAppleAppStore} from 'react-icons/gr';
+import {FaAppleAlt} from 'react-icons/fa';
 
 export default function Platforms({iconId}) {
 
@@ -15,7 +16,7 @@ export default function Platforms({iconId}) {
             case 3:
                 return <span><SiXbox/></span>
             case 4:
-                    return <span><GrAppleAppStore/></span>
+                return <span><GrAppleAppStore/></span>
             case 5:
                 return <span><SiApple/></span>
             case 6:
@@ -24,13 +25,15 @@ export default function Platforms({iconId}) {
                 return <span><SiNintendo/></span>
             case 8:
                     return <span><IoLogoGooglePlaystore/></span>
+            case 55:
+                    return <span><FaAppleAlt/></span>
             default:
-                return <span>N/A</span>
+                return <span></span>
         }
     }
 
     return(
-        <span className="mr-2 my-2 text-lg text-[#020826]">
+        <span className="mr-2 text-lg text-[#020826]">
             {renderIcon(iconId)}
         </span>
     )
