@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from '../../common/Api.js';
 import Heading from './Heading.js';
@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 export default function GamePage(){
     const { gameId } = useParams();
+    const prevGameId = useRef();
 
     const [game, setGame] = useState({})
     const [screenshot, setScreenshot] = useState();
@@ -70,26 +71,31 @@ export default function GamePage(){
         }
     }
 
-    function getGameInfo() {
-        getGame();
-        getScreenshot();
-        getStores();
-        getSameSeries();
+    async function getGameInfo() {
+        await getGame();
+        await getScreenshot();
+        await getStores();
+        await getSameSeries();
     }
 
     useEffect(() => {
-        getGameInfo();
-    }, [gameId]);
+        if(gameId === prevGameId.current) return;
+        if(prevGameId.current !== gameId) {
+            getGameInfo();
+            prevGameId.current = gameId;
+        }
+    }, []);
 
-    const stores = store?.map((item) => (
+
+    const stores = (store || []).map((item) => (
         <Store key={item.store_id} id={item.store_id} website={item.url}/>
     ));
 
-    const screenshots = screenshot?.map((item) => (
+    const screenshots = (screenshot || []).map((item) => (
         <Screenshot image_url={item.image} gameName={game.name} key={item.id}/>
     ));
 
-    const similarGames = similarGameData?.map((game) => (
+    const similarGames = (similarGameData || []).map((game) => (
         <Link to={`/game/${game.id}`}>
             <SameGameCard 
                 key={game.id} 
