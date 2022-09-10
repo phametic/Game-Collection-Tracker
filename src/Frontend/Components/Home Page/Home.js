@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { dataContext, isLoadingContext } from "../common/APIUtils";
-import GameCard from "./Game Card/GameCard";
-import Api from '../common/Api.js';
+import GameCard from "../Game Card/GameCard";
+import Api from '../../common/Api.js';
 
 export default function Home() {
 
-    // const data = React.useContext(dataContext);
-    // const isLoading = React.useContext(isLoadingContext)
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -42,9 +39,9 @@ export default function Home() {
 
     return(
         <section>
-            <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center">
+            <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center z-1">
             {loading ? 
-                <p className="text-[#020826] text-2xl">Data is loading...</p> 
+                <p className="text-[#FFFFFF] text-2xl">Data is loading...</p> 
               : 
                 gameCards
             }

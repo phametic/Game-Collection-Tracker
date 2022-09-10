@@ -15,7 +15,7 @@ export default function Header({gameName, released, platform, tag, background_im
 
     return(
         <header className="">
-            <h1 className="text-4xl text-left">{gameName} ({year})</h1>
+            <h1 className="text-4xl text-left text-[#FFFFFF]">{gameName} ({year})</h1>
             <section className="flex justify-start flex-wrap mt-2">
                 {platforms}
             </section>

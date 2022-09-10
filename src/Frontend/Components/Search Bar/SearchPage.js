@@ -36,7 +36,7 @@ export default function SearchPage() {
 
     console.log(gameData);
 
-    const gameCards = gameData?.map((element) => (
+    const gameCards = (gameData || []).map((element) => (
         <GameCard 
             key={element.id} id={element.id} gameName={element.name}
             backgroundImage={element.background_image}

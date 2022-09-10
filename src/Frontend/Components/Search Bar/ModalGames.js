@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function ModalGames({id, gameName, platforms, image, setSearchModal, setVal}) {
 
-    const platform = platforms?.map((plats) => (
+    const platform = (platforms || []).map((plats) => (
         <Platform key={plats.platform.id} iconId={plats.platform.id}/>
     ));
 

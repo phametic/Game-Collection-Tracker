@@ -84,7 +84,7 @@ export default function GamePage(){
             getGameInfo();
             prevGameId.current = gameId;
         }
-    }, []);
+    }, [gameId]);
 
 
     const stores = (store || []).map((item) => (
@@ -111,7 +111,7 @@ export default function GamePage(){
     return(
         <section className="">
             {loading ? 
-                <p className="text-[#020826] text-2xl">Data is loading...</p> 
+                <p className="text-[#FFFFFF] text-2xl">Data is loading...</p> 
             : 
             <div>
                 <section className="w-11/12 mx-auto">
@@ -155,12 +155,12 @@ export default function GamePage(){
                     </article>
                 </section>
                 <section className="mt-6 p-3">
-                    <h3 className="text-[#020826] font-bold text-xl">Purchase:</h3>
+                    <h3 className="text-[#FFFFFF] font-bold text-xl">Purchase:</h3>
                     {stores}
                 </section>
                 <section className="mt-3 p-3">
                     <h3 
-                        className="text-[#020826] font-bold text-xl mb-3"
+                        className="text-[#FFFFFF] font-bold text-xl mb-3"
                     >
                         Screenshots:
                     </h3>
@@ -169,7 +169,7 @@ export default function GamePage(){
                     </section>
                 </section>
                 <section className="mt-3 p-3">
-                    <h3 className="text-[#020826] font-bold text-xl mb-4">Other Games In The Series:</h3>
+                    <h3 className="text-[#FFFFFF] font-bold text-xl mb-4">Other Games In The Series:</h3>
                     <div className="flex flex-col md:items-center lg:flex-row lg:flex-wrap lg:gap-3 lg:justify-center">
                         {similarGames}
                     </div>

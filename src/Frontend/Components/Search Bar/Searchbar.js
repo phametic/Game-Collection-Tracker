@@ -24,9 +24,8 @@ export default function Searchbar() {
     
     const getSearchedGames = async() => {
         try {
-            let response;
-            response = await Api.getSearchedGames(search);
             setLoading(true);
+            let response = await Api.getSearchedGames(search);
             if(response) {
                 console.log("Searched Game data set.");
                 console.log(response.results);
@@ -74,7 +73,7 @@ export default function Searchbar() {
                 onFocus={() => setSearchModal(true)}
                 value={search}
             />
-                <button type="submit">Search</button>
+                <button type="submit" className="">Search</button>
             </form>
             <SearchModal tabindex={0} show={searchModal} 
                 data={data} loading={loading} setSearchModal={setSearchModal}
