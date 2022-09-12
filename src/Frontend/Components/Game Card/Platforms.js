@@ -33,7 +33,7 @@ export default function Platforms({iconId}) {
     }
 
     return(
-        <span className="mr-2 text-lg text-[#020826]">
+        <span className="mr-2 text-lg text-white">
             {renderIcon(iconId)}
         </span>
     )

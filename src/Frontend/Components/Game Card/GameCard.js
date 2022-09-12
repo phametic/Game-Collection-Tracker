@@ -21,7 +21,7 @@ export default function GameCard({id, gameName, backgroundImage, platform, metac
     ));
 
     return(
-        <div className="sm:w-96 md:max-w-lg bg-[#fffffe] rounded-lg mx-4 mb-4 Grow border-2 border-[#020826]">
+        <div className="sm:w-96 md:max-w-lg bg-black rounded-lg mx-4 mb-4 Grow border-2 border-black">
             <img 
                 src={backgroundImage}
                 alt={gameName}
@@ -32,27 +32,27 @@ export default function GameCard({id, gameName, backgroundImage, platform, metac
                     <p className="flex">
                         {platforms}
                     </p>
-                    <p className="border-2 py-1 px-3 border-[#020826] rounded-lg">
+                    <p className="border-2 py-1 px-3 border-white rounded-lg">
                         <Rating metacritic={metacritic}/>
                     </p>
                 </div>
                 <Link to={`/game/${id}`}>
-                    <p className="text-[#020826] font-bold text-md md:text-[2vw] lg:text-xl">{gameName}</p>
+                    <p className="text-white font-bold text-md md:text-[2vw] lg:text-xl">{gameName}</p>
                 </Link>
                 <AddGameBtn />
             </div>
             <div className="px-2 py-2">
-                <div className="flex justify-between border-b-2 border-b-[#020826] pb-2">
-                    <p className="text-[#020826]">Release Date: </p>
-                    <p className="text-[#020826]">{released}</p>
+                <div className="flex justify-between border-b-2 border-b-[#4B4B4B] pb-2">
+                    <p className="text-white">Release Date: </p>
+                    <p className="text-white">{released}</p>
                 </div>
-                <div className="flex justify-between border-b-2 border-b-[#020826] pb-2 mt-2">
-                    <p className="text-[#020826]">Genres: </p>
-                    <p className="text-[#020826]">{genresList}</p>
+                <div className="flex justify-between border-b-2 border-b-[#4B4B4B] pb-2 mt-2">
+                    <p className="text-white">Genres: </p>
+                    <p className="text-white">{genresList}</p>
                 </div>
                 <div className="flex justify-between mt-2">
-                    <p className="text-[#020826]">ESRB Rating: </p>
-                    <p className="text-[#020826]"><EsrbRating esrb_rating={esrb_rating}/></p>
+                    <p className="text-white">ESRB Rating: </p>
+                    <p className="text-white"><EsrbRating esrb_rating={esrb_rating}/></p>
                 </div>
             </div>
         </div>
