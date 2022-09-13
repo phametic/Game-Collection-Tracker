@@ -14,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/game/:gameId" element={<GamePage />}/>
           <Route path="/search" element={<SearchPage />}/>
+          <Route path="/add/:gameId"/>
         </Routes>
         
     </div>

@@ -8,10 +8,10 @@ export default function SameGameCard({gameName, bgImage, platform}) {
     ))
     return(
             <div 
-                className="w-72 h-48 bg-cover bg-center mb-4"
+                className="w-72 h-48 bg-cover bg-center mb-4 "
                 style={
                     {
-                        backgroundImage: `url("${bgImage}")`,
+                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(52, 58, 64, 0.9)),url("${bgImage}")`,
                     }
                 }
             >

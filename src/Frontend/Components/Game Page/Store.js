@@ -32,7 +32,7 @@ export default function Store({id,website}) {
             href={website}
             target="_blank"
             rel="noreferrer"
-            className="inline-block mt-4 mr-4 text-xl font-bold border-2 border-[#020826] rounded-md px-2 py-2 hover:bg-[#8c7851] hover:text-[#fffffe]"
+            className="inline-block mt-4 mr-4 text-xl font-bold border-2 border-white rounded-md px-2 py-2 bg-[#2E2E2F] hover:bg-[#4B4B4B] text-white hover:text-red-500"
         >
             {storeName(id)}
         </a>

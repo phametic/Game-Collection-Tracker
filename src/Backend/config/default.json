@@ -1,0 +1,4 @@
+{
+    "mongoURI":
+      "mongodb+srv://<username>:<password>@gamebacklog.ilm0urn.mongodb.net/?retryWrites=true&w=majority"
+  }

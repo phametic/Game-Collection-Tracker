@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
+var connectDB = require('./config/db');
 
 var getGame = require('./routes/GetGame.js')
 var getNewestGames = require('./routes/getNewestGames.js');
@@ -15,6 +16,8 @@ var getSearchedGames = require('./routes/GetSearchedGames.js');
 var app = express();
 
 require('dotenv').config();
+
+connectDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
