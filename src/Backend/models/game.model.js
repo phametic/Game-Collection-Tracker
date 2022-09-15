@@ -10,6 +10,11 @@ const GameSchema = new mongoose.Schema({
         required: true,
         default: "No Game Title."
     },
+    owned: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     created_at: {
         type: Date,
         default: Date.now

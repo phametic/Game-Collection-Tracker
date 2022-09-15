@@ -12,13 +12,13 @@ const Game = require('../../models/game.model');
 const testData = [
 {
     gameId: "48",
-    title: "Hitman 2"
+    title: "Hitman 2",
+    owned: true
 }]
 
 router.post('/test', (req, res) => {
     res.send('game route testing');
     Game.create(testData).catch(err => res.status(404).json({noGameFound: 'No Game found.'}));
-
 });
 
 // router.get('/', (req, res) => {
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
 // @route GET api/games/:id
 // @description Get a game by it's id
 router.get('/:id', (req, res) => {
-    Game.findById(req.params.id)
+    Game.findOne({gameId: req.params.id})
         .then(game => res.json(game))
         .catch(err => res.status(404).json({noGameFound: 'No Game found.'}))
 });
@@ -56,9 +56,13 @@ router.post('/add', (req, res) => {
 // @route DELETE api/games
 // @description Delete a game by its ID
 router.delete('/:id', (req, res) => {
-    Game.findByIdAndDelete(req.params.id, req.body)
+    console.log(req.params.id + " " + req.body)
+    Game.deleteOne({gameId: req.params.id})
         .then(game => res.json({msg: 'Game deleted successfully'}))
         .catch(err => res.status(400).json({error: 'No game found'}));
+    // Game.findByIdAndDelete(req.params.id, req.body)
+    //     .then(game => res.json({msg: 'Game deleted successfully'}))
+    //     .catch(err => res.status(400).json({error: 'No game found'}));
 })
 
 module.exports = router;

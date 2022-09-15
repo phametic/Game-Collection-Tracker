@@ -34,7 +34,7 @@ export default function Navbar() {
                 <Link to="/">
                     <p className="text-[#FFFFFF] text-4xl font-bold">Video Game Collection</p>
                 </Link>
-                <Link to="">
+                <Link to="/gamelist">
                     <p className="text-[#FFFFFF] text-lg font-bold">My Games List</p>
                 </Link>
             </section>
