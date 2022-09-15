@@ -32,6 +32,16 @@ const baseUrl = 'http://localhost:9000/api/'
         return response.data;
     }
 
+    const getGamesListFromDB = async() => {
+        const response = await axios.get(`${baseUrl}games/`);
+        return response.data;
+    } 
+
+    const getAGameFromDB = async(id) => {
+        const response = await axios.get(`${baseUrl}games/` + id);
+        return response.data;
+    }
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     callNewestGame,
@@ -39,5 +49,7 @@ export default {
     getScreenshot,
     getStore,
     getSameSeries,
-    getSearchedGames
+    getSearchedGames,
+    getGamesListFromDB,
+    getAGameFromDB
 }

@@ -27,14 +27,14 @@ export default function Navbar() {
     }
 
     return(
-        <nav className="my-6 w-11/12 mx-auto h-64 bg-cover" 
+        <nav className="mb-12 w-full mx-auto h-64 bg-cover" 
             style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.9), rgba(52, 58, 64, 0.9)), url("${(data[0] || []).background_image}")`}}
         >
             <section className="flex flex-row justify-evenly items-center h-56">
                 <Link to="/">
-                    <p className="text-[#FFFFFF] text-lg">Video Game Collection</p>
+                    <p className="text-[#FFFFFF] text-4xl font-bold">Video Game Collection</p>
                 </Link>
-                <Link to="">
+                <Link to="/gamelist">
                     <p className="text-[#FFFFFF] text-lg font-bold">My Games List</p>
                 </Link>
             </section>

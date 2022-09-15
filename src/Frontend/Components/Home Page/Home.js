@@ -39,14 +39,16 @@ export default function Home() {
 
     return(
         <section>
-            <div className="flex flex-col md:flex-row md:flex-wrap md:justify-center z-1">
-            {loading ? 
-                <p className="text-[#FFFFFF] text-2xl">Data is loading...</p> 
-              : 
-                gameCards
-            }
+            <div className="z-1">
+                <h1 className="text-white text-center font-bold text-4xl mb-8">Most Recently Released Video Games</h1>
+                <section className="flex flex-col md:flex-row md:flex-wrap md:justify-center">
+                    {loading ? 
+                        <p className="text-[#FFFFFF] text-2xl">Data is loading...</p> 
+                    : 
+                        gameCards
+                    }
+                </section>
             </div>
-              
         </section>
     )
 }

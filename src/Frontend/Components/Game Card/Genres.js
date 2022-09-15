@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Genres({genres}) {
     return(
-        <span className="text-[#020826]">{genres}</span>
+        <span className="text-white">{genres}</span>
     )
 }

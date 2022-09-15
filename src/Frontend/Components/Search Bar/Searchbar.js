@@ -54,26 +54,33 @@ export default function Searchbar() {
         </Link>
     }
 
+
+
     return(
-        <div>
+        <div className="">
             <form 
                 className="flex justify-center my-4"
                 action="/search"
                 method="get"
                 onSubmit={OnSubmit}
             >
-            <input
-                type="text"
-                name="query"
-                id="game-search"
-                label="search"
-                placeholder="Search For A Game"
-                onChange={onChange}
-                onBlur={loseFocus}
-                onFocus={() => setSearchModal(true)}
-                value={search}
-            />
-                <button type="submit" className="">Search</button>
+            <div className="">
+                <input
+                    type="text"
+                    name="query"
+                    id="game-search"
+                    label="search"
+                    placeholder="Search For A Game"
+                    onChange={onChange}
+                    onBlur={loseFocus}
+                    //onFocus={() => setSearchModal(true)}
+                    value={search}
+                    autoComplete="off"
+                    className="bg-[#2E2E2F] w-[342px] px-[13px] py-[9px] text-[#A5A5A5] rounded-tl-xl rounded-bl-xl border-hidden shadow-lg"
+                />
+                    <button type="submit" className="w-[120px] bg-[#4B4B4B] pt-[9px] pr-[11px] pb-[9px] pl-[17px] text-white rounded-tr-xl rounded-br-xl shadow-lg">Search</button>
+            </div>
+            
             </form>
             <SearchModal tabindex={0} show={searchModal} 
                 data={data} loading={loading} setSearchModal={setSearchModal}
