@@ -27,11 +27,7 @@ export default function GameCard({id, gameName, backgroundImage, platform, metac
         try {
             const response = await Api.getAGameFromDB(id);
             if(response) {
-                if(id === response.gameId) {
-                    setOwnedStatus(true)
-                } else {
-                    setOwnedStatus(false)
-                }
+                setOwnedStatus(response.owned)
             } 
         } catch (err) {
             console.log("Error getting game with ID: " + id)

@@ -4,7 +4,7 @@ import Home from './Components/Home Page/Home.js';
 import Navbar from './Components/Navbar/Navbar.js';
 import GamePage from './Components/Game Page/GamePage.js';
 import SearchPage from './Components/Search Bar/SearchPage';
-import UserGamePage from './Components/User Game Page/UserGamePage';
+import UserGamePage from './Components/User/UserGamePage';
 
 function App() {
   return (

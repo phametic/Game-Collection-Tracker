@@ -29,7 +29,7 @@ router.post('/test', (req, res) => {
 // @description Get all games
 
 router.get('/', (req, res) => {
-    Game.find()
+    Game.find({owned: true})
         .then(games => res.json(games))
         .catch(err => res.status(404).json({noGamesFound: 'No Games found.'}));
 });
