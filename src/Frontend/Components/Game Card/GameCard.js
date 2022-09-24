@@ -23,7 +23,7 @@ export default function GameCard({id, gameName, backgroundImage, platform, metac
 
     const [ownedStatus, setOwnedStatus] = useState(false)
 
-    const getGameByID = async(id) => {
+    const getGameByIDFromDB = async(id) => {
         try {
             const response = await Api.getAGameFromDB(id);
             if(response) {
@@ -36,7 +36,7 @@ export default function GameCard({id, gameName, backgroundImage, platform, metac
     }
 
     useEffect(() => {
-        getGameByID(id);
+        getGameByIDFromDB(id);
     }, [])
 
     return(

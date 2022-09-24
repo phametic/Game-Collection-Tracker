@@ -40,7 +40,6 @@ export default function GamePage(){
             if(response) {
                 setScreenshot(response.results);
                 console.log("Screenshot data set.");
-                console.log(screenshot);
             }
         } catch (error) {
             console.log(error);

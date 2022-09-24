@@ -25,8 +25,10 @@ export default function UserGamePage() {
     }
 
     const grabGamesFromAPI = async () => {
+        console.log("Grabbing data from Rawg with DB ids.")
         setLoading(true);
-        const data = gameListDB.map(async (data) => {
+        const data = gameListDB.map(async(data) => {
+            console.log("Entered data map.")
             let response; 
             try {
                 response = await Api.getGame(data.gameId);
@@ -42,15 +44,17 @@ export default function UserGamePage() {
         setGameListAPI(results);
     }
 
-    async function grabData() {
-        await getGameListDB();
-        await grabGamesFromAPI();
-    }
+    useEffect(() => {
+        console.log("Grabbed data from DB.");
+        getGameListDB();
+    },[])
 
     useEffect(() => {
-        console.log("UseEffect called")
-        grabData();
-    }, [owned]) 
+        if(!gameListDB || !gameListDB.length) {
+            return;
+        }
+        grabGamesFromAPI()
+    }, [gameListDB]) 
 
     const gameCards = (gameListAPI || []).map(element => (
         <GameCard 
@@ -66,7 +70,7 @@ export default function UserGamePage() {
         />
     ))
 
-    if(loading || !gameListDB || gameListDB.length < 0) {
+    if(loading || !gameListDB || gameListDB.length < 0 || !gameListAPI || !gameListAPI.length) {
         return <h1 className="text-3xl text-white">Loading.... Please Wait.</h1>
     }
     
