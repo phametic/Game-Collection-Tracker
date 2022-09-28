@@ -37,7 +37,7 @@ export default function GameCard({id, gameName, backgroundImage, platform, metac
 
     useEffect(() => {
         getGameByIDFromDB(id);
-    }, [])
+    }, [ownedStatus])
 
     return(
         <div className="sm:w-96 md:max-w-lg bg-black rounded-lg mx-4 mb-4 Grow border-2 border-black">

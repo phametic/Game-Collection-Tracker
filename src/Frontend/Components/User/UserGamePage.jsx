@@ -24,37 +24,57 @@ export default function UserGamePage() {
         }
     }
 
-    const grabGamesFromAPI = async () => {
-        console.log("Grabbing data from Rawg with DB ids.")
+
+    // const grabGamesFromAPI = async () => {
+    //     console.log("Grabbing data from Rawg with DB ids.")
+    //     setLoading(true);
+    //     const data = gameListDB.map(async(data) => {
+    //         console.log("Entered data map.")
+    //         let response; 
+    //         try {
+    //             response = await Api.getGame(data.gameId);
+    //             console.log("Fetched data from rawg")
+    //         } catch (err) {
+    //             console.log(err)
+    //             setLoading(false);
+    //         }
+    //         return response;
+    //     })
+    //     setLoading(false);
+    //     const results = await Promise.all(data);
+    //     setGameListAPI(results);
+    // }
+
+    const grabGamesFromAPI = async() => {
         setLoading(true);
-        const data = gameListDB.map(async(data) => {
-            console.log("Entered data map.")
-            let response; 
-            try {
-                response = await Api.getGame(data.gameId);
-                console.log("Fetched data from rawg")
-            } catch (err) {
-                console.log(err)
-                setLoading(false);
-            }
-            return response;
+
+        const gameListPromises = gameListDB.map((data) => {
+            return Api.getGame(data.gameId);
         })
-        setLoading(false);
-        const results = await Promise.all(data);
-        setGameListAPI(results);
+        try {
+            const response = await Promise.all(gameListPromises).finally(() => setLoading(false));
+            setGameListAPI(response);
+            console.log(gameListAPI)
+        }catch(err) {
+            console.log(err);
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
-        console.log("Grabbed data from DB.");
-        getGameListDB();
+        // console.log("Grabbed data from DB.");
+        // getGameListDB();
+        console.log("Grabbed data from API.");
+        grabGamesFromAPI();
+
     },[])
 
-    useEffect(() => {
-        if(!gameListDB || !gameListDB.length) {
-            return;
-        }
-        grabGamesFromAPI()
-    }, [gameListDB]) 
+    // useEffect(() => {
+    //     if(!gameListDB || !gameListDB.length) {
+    //         return;
+    //     }
+    //     //grabGamesFromAPI()
+    // }, [gameListDB]) 
 
     const gameCards = (gameListAPI || []).map(element => (
         <GameCard 
@@ -70,10 +90,12 @@ export default function UserGamePage() {
         />
     ))
 
-    if(loading || !gameListDB || gameListDB.length < 0 || !gameListAPI || !gameListAPI.length) {
+    if(loading || !gameListAPI || !gameListAPI.length) {
         return <h1 className="text-3xl text-white">Loading.... Please Wait.</h1>
-    }
-    
+    } else  if(!gameListDB || gameListDB.length < 0) {
+        return <h1 className="text-3xl text-white">No Games In Your List. Start Adding Some!</h1>
+    } 
+
     return(
         <div>
             <h1 className="text-white text-3xl">List of Added Games</h1>

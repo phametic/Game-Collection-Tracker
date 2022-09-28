@@ -6,16 +6,15 @@ export default function AddGameBtn({id, gameTitle, ownedStatus, setOwnedStatus})
     const baseUrl = 'http://localhost:9000/api/games'
 
     //console.log("Owned status: " + ownedStatus);
-
     const gameData = [{
         gameId: id,
         title: gameTitle,
         owned: true
     }]
-    
     function handleOnClick() {
         if(!ownedStatus) {
             setOwnedStatus(true);
+            
             axios.post(`${baseUrl}/add`, gameData)
                 .catch(err => {
                     console.log("Error adding game.")
